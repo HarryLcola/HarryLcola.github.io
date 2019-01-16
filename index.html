@@ -85,6 +85,8 @@
 		        
 					<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
 		        
+					<a class="mail" target="_blank" href="/qibo.huang@lcola.cn" title="mail"><i class="icon-mail"></i></a>
+		        
 			</div>
 		</nav>
 	</header>		
@@ -126,6 +128,8 @@
 			        
 						<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
 			        
+						<a class="mail" target="_blank" href="/qibo.huang@lcola.cn" title="mail"><i class="icon-mail"></i></a>
+			        
 				</div>
 			</nav>
 
@@ -152,27 +156,54 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-文章名" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+    <article id="post-swift3.2升级至swift4.2" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/13/文章名/">文章名</a>
+      <a class="article-title" href="/2018/11/13/swift3.2升级至swift4.2/">关于git相关笔记整理</a>
     </h1>
   
 
         
-        <a href="/2018/11/13/文章名/" class="archive-article-date">
-  	<time datetime="2018-11-13T10:25:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-13</time>
+        <a href="/2018/11/13/swift3.2升级至swift4.2/" class="archive-article-date">
+  	<time datetime="2018-11-13T10:24:39.213Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-13</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h1 id="1-1-git是什么？"><a href="#1-1-git是什么？" class="headerlink" title="1.1 git是什么？"></a>1.1 git是什么？</h1><blockquote>
+<p>git 是一个开源的分布式版本控制系统，是Linus Torvalds 为了帮助管理 Linux 内核开发而开发的一个开放源码的版本控制。引用官网的一句话介绍：git是一个免费的开源 分布式 版本控制系统。其历史起源如下：</p>
+</blockquote>
+<p><img src="/img/git-1.png" class="js-avatar"></p>
+<h2 id="版本控制系统-vsc"><a href="#版本控制系统-vsc" class="headerlink" title="版本控制系统(vsc)"></a>版本控制系统(vsc)</h2><blockquote>
+<p>版本控制是一种记录一个或若干哥文件内容变化，以便于将来查阅特定版本修改情况的系统</p>
+<ol>
+<li>追踪细节变化</li>
+<li>回退到某个时间节点状态</li>
+</ol>
+</blockquote>
+<h2 id="分布式"><a href="#分布式" class="headerlink" title="分布式"></a>分布式</h2><blockquote>
+<p>分布式计算，又称分散式运算；分布式系统是一组透过网络相互连接传递消息与通信后并协调它们的行为而形成的系统。</p>
+</blockquote>
+<h1 id="1-2-分布式-与-集中式版本控制系统"><a href="#1-2-分布式-与-集中式版本控制系统" class="headerlink" title="1.2 分布式 与 集中式版本控制系统"></a>1.2 分布式 与 集中式版本控制系统</h1><blockquote>
+<p><strong>分布式</strong>(中心化)：只要提供一台电脑作为版本集中的服务器放就够了，但这个服务器仅仅是用来“交换”大家的修改，没有它大家还是一样能够干活，只是交换修改不太方便，每一台电脑都有各自独立的开发环境，不需要联网，本地直接运行，相对集中式安全系数高很多。</p>
+</blockquote>
+<blockquote>
+<p><strong>集中式</strong>（网络依赖）：将项目集中存在中央服务器中，在工作的时候，大家只能在自己电脑操作，从同一个地方下载最新的版本，然后开始工作，做完的工作再提交给中央服务器保存，这种方式需要联网，现在云开发就是这样的处理方式。</p>
+</blockquote>
+<p><img src="/img/git-2.png" class="js-avatar"></p>
+<h1 id="2-1-git基本结构"><a href="#2-1-git基本结构" class="headerlink" title="2.1 git基本结构"></a>2.1 git基本结构</h1><p><img src="/img/git-3.png" class="js-avatar"></p>
+<h1 id="2-2-git-目录"><a href="#2-2-git-目录" class="headerlink" title="2.2 .git 目录"></a>2.2 .git 目录</h1><p>.<br>├── COMMIT_EDITMSG<br>├── FETCH_HEAD           是一个版本链接，指向着目前已经从远程仓库取下来的分支的末端版本<br>├── HEAD                 映射到ref引用，能够找到下一次commit的前一次哈希值<br>├── ORIG_HEAD<br>├── config               git仓库的配置文件<br>├── description          仓库的描述信息，主要给gitweb等git托管系统使用<br>├── hooks                存放一些shell脚本<br>├── index                暂存区（stage），一个二进制文件<br>├── info                 存放仓库的一些信息<br>├── logs                 保存所有更新的引用记录<br>├── objects              存放所有的git对象<br>├── packed-refs<br>├── refs<br>└── sourcetreeconfig</p>
+<blockquote>
+<p>这里稍微讲几个比较重要的文件夹<br><strong>FETCH_HEAD</strong>：使用远端存储库时，可能会使用git fetch指令取回所有远端存储库的物件，这个FETCH_HEAD符号参考则会记录远端存储库的每个分之的HEAD<br><strong>HEAD</strong>： 指向当前分支的顶部游标。使用的操作有: git reset HEAD^ –hard<br><strong>ORIG_HEAD</strong>: 存储的是上一次操作的HEAD，可以通过ORIG_HEAD 找回上次操作的内容。<br><strong>index</strong>: Git 是一个内容寻址文件系统，其核心部分是一个简单的键值对数据库。向该数据库插入任意类型的内容，它会返回键值（SHA-1 哈希值），我们可以利用此值来重新获取内容。$ git add 之后 objects 就缓存了，并不用等commit<br><strong>object</strong>: Git 是按元数据存储的，区别于按文件或者差异化存储。每一个 commit 都会生成一个新的 snapshot。这里有个误区， git 实际并不一定比 svn 存储小，但是由于本身的细节处理 （特别是分支）和 压缩等处理，还是会相对更小些。</p>
+</blockquote>
+<h1 id="2-3-git-常用的命令"><a href="#2-3-git-常用的命令" class="headerlink" title="2.3 .git 常用的命令"></a>2.3 .git 常用的命令</h1><p><strong>$ git add</strong> 将工作区修改的内容存放到暂存区，通过SHA, 创建新的git object，然后存放在index区（git index 关联 object id）<br><strong>$ git checkout</strong> 用于切换分支或者恢复工作文件</p>
+
       
 
       
@@ -184,7 +215,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/11/13/文章名/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/11/13/swift3.2升级至swift4.2/">展开全文 >></a>
         </p>
       
 
@@ -214,19 +245,19 @@
 
 
   
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+    <article id="post-关于git相关笔记整理" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/13/hello-world/">Hello World</a>
+      <a class="article-title" href="/2018/11/13/关于git相关笔记整理/">关于git相关笔记整理</a>
     </h1>
   
 
         
-        <a href="/2018/11/13/hello-world/" class="archive-article-date">
+        <a href="/2018/11/13/关于git相关笔记整理/" class="archive-article-date">
   	<time datetime="2018-11-13T10:24:39.213Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-13</time>
 </a>
         
@@ -234,15 +265,109 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+        <h1 id="git-简介"><a href="#git-简介" class="headerlink" title="git 简介"></a>git 简介</h1><h2 id="1-1-git是什么？"><a href="#1-1-git是什么？" class="headerlink" title="1.1 git是什么？"></a>1.1 git是什么？</h2><blockquote>
+<p>git 是一个开源的分布式版本控制系统，是Linus Torvalds 为了帮助管理 Linux 内核开发而开发的一个开放源码的版本控制。引用官网的一句话介绍：git是一个免费的开源 分布式 版本控制系统。其历史起源如下：</p>
+</blockquote>
+<p><img src="/img/git-1.png" class="js-avatar"></p>
+<h3 id="版本控制系统-vsc"><a href="#版本控制系统-vsc" class="headerlink" title="版本控制系统(vsc)"></a>版本控制系统(vsc)</h3><blockquote>
+<p>版本控制是一种记录一个或若干哥文件内容变化，以便于将来查阅特定版本修改情况的系统</p>
+<ol>
+<li>追踪细节变化</li>
+<li>回退到某个时间节点状态</li>
+</ol>
+</blockquote>
+<h3 id="分布式"><a href="#分布式" class="headerlink" title="分布式"></a>分布式</h3><blockquote>
+<p>分布式计算，又称分散式运算；分布式系统是一组透过网络相互连接传递消息与通信后并协调它们的行为而形成的系统。</p>
+</blockquote>
+<h2 id="1-2-分布式-与-集中式版本控制系统"><a href="#1-2-分布式-与-集中式版本控制系统" class="headerlink" title="1.2 分布式 与 集中式版本控制系统"></a>1.2 分布式 与 集中式版本控制系统</h2><blockquote>
+<p><strong>分布式</strong>(中心化)：只要提供一台电脑作为版本集中的服务器放就够了，但这个服务器仅仅是用来“交换”大家的修改，没有它大家还是一样能够干活，只是交换修改不太方便，每一台电脑都有各自独立的开发环境，不需要联网，本地直接运行，相对集中式安全系数高很多。</p>
+</blockquote>
+<blockquote>
+<p><strong>集中式</strong>（网络依赖）：将项目集中存在中央服务器中，在工作的时候，大家只能在自己电脑操作，从同一个地方下载最新的版本，然后开始工作，做完的工作再提交给中央服务器保存，这种方式需要联网，现在云开发就是这样的处理方式。</p>
+</blockquote>
+<p><img src="/img/git-2.png" class="js-avatar"></p>
+<h1 id="git原理"><a href="#git原理" class="headerlink" title="git原理"></a>git原理</h1><h2 id="2-1-git基本结构"><a href="#2-1-git基本结构" class="headerlink" title="2.1 git基本结构"></a>2.1 git基本结构</h2><p><img src="/img/git-3.png" class="js-avatar"></p>
+<h2 id="2-2-git-目录"><a href="#2-2-git-目录" class="headerlink" title="2.2 .git 目录"></a>2.2 .git 目录</h2><p>.<br>├── COMMIT_EDITMSG<br>├── FETCH_HEAD           是一个版本链接，指向着目前已经从远程仓库取下来的分支的末端版本<br>├── HEAD                 映射到ref引用，能够找到下一次commit的前一次哈希值<br>├── ORIG_HEAD<br>├── config               git仓库的配置文件<br>├── description          仓库的描述信息，主要给gitweb等git托管系统使用<br>├── hooks                存放一些shell脚本<br>├── index                暂存区（stage），一个二进制文件<br>├── info                 存放仓库的一些信息<br>├── logs                 保存所有更新的引用记录<br>├── objects              存放所有的git对象<br>├── packed-refs<br>├── refs<br>└── sourcetreeconfig<br><strong>这里稍微讲几个比较重要的文件夹</strong></p>
+<blockquote>
+<p><strong>FETCH_HEAD</strong>：使用远端存储库时，可能会使用git fetch指令取回所有远端存储库的物件，这个FETCH_HEAD符号参考则会记录远端存储库的每个分之的HEAD</p>
+</blockquote>
+<blockquote>
+<p><strong>HEAD</strong>： 指向当前分支的顶部游标。使用的操作有: git reset HEAD^ –hard</p>
+</blockquote>
+<blockquote>
+<p><strong>ORIG_HEAD</strong>: 存储的是上一次操作的HEAD，可以通过ORIG_HEAD 找回上次操作的内容。</p>
+</blockquote>
+<blockquote>
+<p><strong>index</strong>: Git 是一个内容寻址文件系统，其核心部分是一个简单的键值对数据库。向该数据库插入任意类型的内容，它会返回键值（SHA-1 哈希值），我们可以利用此值来重新获取内容。$ git add 之后 objects 就缓存了，并不用等commit</p>
+</blockquote>
+<blockquote>
+<p><strong>object</strong>: Git 是按元数据存储的，区别于按文件或者差异化存储。每一个 commit 都会生成一个新的 snapshot。这里有个误区， git 实际并不一定比 svn 存储小，但是由于本身的细节处理 （特别是分支）和 压缩等处理，还是会相对更小些。</p>
+</blockquote>
+<h2 id="2-3-git-常用的命令"><a href="#2-3-git-常用的命令" class="headerlink" title="2.3 .git 常用的命令"></a>2.3 .git 常用的命令</h2><blockquote>
+<p><strong>$ git add</strong> 将工作区修改的内容存放到暂存区，通过SHA, 创建新的git object，然后存放在index区（git index 关联 object id）</p>
+</blockquote>
+<blockquote>
+<p><strong>$ git checkout</strong> 用于切换分支或者恢复工作文件</p>
+</blockquote>
+<blockquote>
+<p><strong>$ git commit</strong> 提交暂存信息到仓库（类似本地持久化）</p>
+</blockquote>
+<blockquote>
+<p><strong>$ git reset</strong> HEAD一般都是最后一个commit, 但是我们可以通过reset控制HEAD的指向，恢复local repository的HEAD到指定的commit也通常通过git reset 取消 index 区的内容。</p>
+</blockquote>
+<p><strong>git reset 有三种类型</strong><br>–mixed (默认)：重置commit 与 index 到指定版本， reset掉的 commit&amp;index 会保留在工作区。<br>–soft：重置 commit 到制定的版本，不涉及 index的回退。reset 掉的 commit 会保留在正常工作区。<br>–hard：重置 commit、index 与工作区代码到指定版本</p>
+<h1 id="远程仓库"><a href="#远程仓库" class="headerlink" title="远程仓库"></a>远程仓库</h1><h2 id="3-1-local-与-remote-repository-的协同工作"><a href="#3-1-local-与-remote-repository-的协同工作" class="headerlink" title="3.1 local 与 remote repository 的协同工作"></a>3.1 local 与 remote repository 的协同工作</h2><p><img src="/img/git-5.png" class="js-avatar"></p>
+<blockquote>
+<ol>
+<li>初始化: $ git clone <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>/…/xxx.git</li>
+<li>关联设置： $ git remote add <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>/…/xxx.git</li>
+<li>获取 remote 的最新内容，储存到本地仓库: $ git fetch</li>
+<li>获取 remote 的最新内容，并同步到工作区: $ git pull</li>
+<li>本地同步到远程 $ git push </li>
+</ol>
+</blockquote>
+<h2 id="3-2-Pull-request"><a href="#3-2-Pull-request" class="headerlink" title="3.2 Pull request"></a>3.2 Pull request</h2><p><strong>三条线路</strong><br><img src="/img/git-6.png" class="js-avatar"></p>
+<blockquote>
+<ol>
+<li>初始化：<br>线路： upstream –(fork)–&gt; Origin –(clone) –&gt; Lcola</li>
+<li>更新upstream代码<br>线路： upstream –(pull) –&gt; Lcola –(push) –&gt; Origin</li>
+<li>贡献代码到 upstream<br>线路：Local –(push) –&gt; Origin –(PR) –&gt; Upstream</li>
+</ol>
+</blockquote>
+<h1 id="git-branch"><a href="#git-branch" class="headerlink" title="git branch"></a>git branch</h1><h2 id="4-1-分支创建、切换"><a href="#4-1-分支创建、切换" class="headerlink" title="4.1 分支创建、切换"></a>4.1 分支创建、切换</h2><p>1) 创建新的分支: git branch issues1<br>2) 切换分支: git checkout issuess1 </p>
+<h2 id="分支合并-git-merge"><a href="#分支合并-git-merge" class="headerlink" title="分支合并-git merge"></a>分支合并-git merge</h2><p><img src="/img/git-8.png" class="js-avatar"><br>此处执行git merge 会出现什么情况呢？</p>
+<blockquote>
+<p>A.合并成一条线，并且按时间编排 commit 的点<br><img src="/img/git-9.png" class="js-avatar"><br>B.合并成一条线，并且 commit 都放在master最后面<br><img src="/img/git-10.png" class="js-avatar"><br>C.不合并到一条线，而是将issues1上的代码在master上重新生成一个新的commit<br><img src="/img/git-11.png" class="js-avatar"><br>如果使用 merge , 只能是 no-ff, 答案是C<br>那么B的结果会出现在使用rebase的时候</p>
+</blockquote>
+<h2 id="–ff-fast-forwrd-–no–ff-合并方式"><a href="#–ff-fast-forwrd-–no–ff-合并方式" class="headerlink" title="–ff(fast-forwrd), –no–ff 合并方式"></a>–ff(fast-forwrd), –no–ff 合并方式</h2><p><img src="/img/git-12.png" class="js-avatar" width="300" height="382"><img src="/img/git-13.png" class="js-avatar" width="125" height="383"><br>默认情况 git merge 使用的是 ff 模式，当设置 —no-ff 后，才可能出现下面的情况。<br>使用 ff 模式会导致当前分支的 log 线性串联起来，也就是看不出哪个 commits 是来源于其他分支的，这个坏处就是分支删除后，就无法判断某个 commit 的来源。为了保持清晰的分支合并历史图示，pull request 是使用 no-ff 模式，平时本地操作也是推荐（当然我们很少去理会某个commit的分支来源，所以作用不大）</p>
+<h2 id="4-2-get-merge-vs-git-rebase"><a href="#4-2-get-merge-vs-git-rebase" class="headerlink" title="4.2 get merge vs git rebase"></a>4.2 get merge vs git rebase</h2><blockquote>
+<p><strong>Merge</strong>: 保留 commit 的历史。 Pull-request 默认使用使用 no-ff merge 的合并方式，可以让冲突解决更简单。</p>
+</blockquote>
+<blockquote>
+<p><strong>Rebase</strong>: Commits 的历史更加线性。如果是 master–&gt; feature branch 或者upstream–&gt; local respoitory, 建议使用 rebase 让本地未  push 的 commit 保持线性依赖</p>
+</blockquote>
+<h2 id="4-3-Rebase-的黄金法则"><a href="#4-3-Rebase-的黄金法则" class="headerlink" title="4.3 Rebase 的黄金法则"></a>4.3 Rebase 的黄金法则</h2><blockquote>
+<p>不要 rebase 公共的分支</p>
+</blockquote>
+<h1 id="git-flow"><a href="#git-flow" class="headerlink" title="git flow"></a>git flow</h1><h2 id="5-1-常用的工作流"><a href="#5-1-常用的工作流" class="headerlink" title="5.1 常用的工作流"></a>5.1 常用的工作流</h2><p>Git flow、Github folw、Gitlab flow 三种工作流都有一个共同点：都采用“功能驱动开发”，下面这种是最早诞生并且广泛应用的模型，来自 Vincent Driessen 《A successful Git branching model》<br><img src="/img/git-7.png" class="js-avatar"><br><strong>构成</strong></p>
+<blockquote>
+<p>A)两个长期的branches<br><strong>-master</strong>: 用于存放对外发布的版本，任何时候都可以在这个分支拿到的，都是稳定的分布版本<br><strong>-deveop</strong>: 用于日常开发存放<br>B) 三种短期分支<br><strong>功能分支（feature branch</strong><br><strong>补丁分支 (hotfix branch)</strong><br><strong>预发分支 (release branch)</strong></p>
+</blockquote>
+<h1 id="部分常用的操作建议"><a href="#部分常用的操作建议" class="headerlink" title="部分常用的操作建议"></a>部分常用的操作建议</h1><h2 id="6-1-git-commit-清晰可读性"><a href="#6-1-git-commit-清晰可读性" class="headerlink" title="6.1 git commit 清晰可读性"></a>6.1 git commit 清晰可读性</h2><blockquote>
+<p>A) 备注的格式<br>考虑到实际开发，一般都项目管理系统相互配套，推荐格式可以如下：<br>issuesID + 空格 + subject：+ 实际内容<br>B) 提交的粒度<br>不宜过大，也不应过小，保持一定的可读性，尽量保持该段代码的可读性</p>
+</blockquote>
+<h2 id="6-2-git-branch-巧用分支，梳理代码"><a href="#6-2-git-branch-巧用分支，梳理代码" class="headerlink" title="6.2 git branch 巧用分支，梳理代码"></a>6.2 git branch 巧用分支，梳理代码</h2><p>A) upstream 通过 feature， hohotfix 和 release branch 管理迭代代码<br>B) Downstream 的分支与 upstream 可以不尽相同。通过branch可以避免旧分支上的pull request 等待，享受更新 </p>
+<h2 id="6-3-git-stash-谨慎使用、规避风险"><a href="#6-3-git-stash-谨慎使用、规避风险" class="headerlink" title="6.3 git stash 谨慎使用、规避风险"></a>6.3 git stash 谨慎使用、规避风险</h2><p><strong>A) git stash</strong><br>可以缓存代码，当前代码还没有达到可提交的标准而又有其他任务介入时候，可以将修改的代码保存，待需要使用时候通过 git stash pop 取出<br><strong>B) git stash 风险</strong></p>
+<ol>
+<li>多个 git branch 共用一个缓存，容易混淆</li>
+<li>git stash pop 操作到非目标branch，容易造成冲突，并且难以恢复<br><strong>C）git stash 推荐方案</strong><br>不要简单地用 git stash &amp; git stash pop 进行代码的存储，很容易造成 B)的风险<blockquote>
+<p>方案一： 使用git stash apply 有针对性的操作<br>// 暂时离开分支可执行<br>git stash save “描述内容”<br>// 回来时可执行<br>git stash list<br>git stash apply stash @{n}<br>git stash drop stash @{n}</p>
+</blockquote>
+</li>
+</ol>
+<blockquote>
+<p>方案二： git add + commit, 分支间自由切换<br>// 暂时离开分支<br>git add .<br>git commit -m “暂时离开片刻，描述内容”<br>// 回来时可执行<br>git reset HEAD^</p>
+</blockquote>
 
       
 
@@ -255,7 +380,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/11/13/hello-world/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/11/13/关于git相关笔记整理/">展开全文 >></a>
         </p>
       
 
@@ -295,7 +420,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018 黄启博
+    		&copy; 2019 黄启博
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -457,7 +582,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">&lt;br&gt;&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家</div>
   	  	
     	</section>
     
